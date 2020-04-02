@@ -10,7 +10,7 @@ class Database
     protected static $connection = null;
 
     public function  __construct() {
-
+        
     }
 
     public static function start() {
