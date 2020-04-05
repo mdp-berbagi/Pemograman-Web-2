@@ -10,8 +10,10 @@
  */
 require_once("./model/Mahasiswa.php");
 
+// buat object
 $model_mhs = new Mahasiswa();
 
+// tarik data (BOLEH DI FOREACH, INI ARRAY BIASA)
 $semua_mahasiswa = $model_mhs->getAllMahasiswa();
 ?>
 

@@ -1,9 +1,10 @@
 <?php
-
+// liat apakah ada target yang harus di delete
 if(!isset($_GET['target'])) {
     exit("Tidak bisa hapus data karna tidak ada target");
 }
 
+// panggil model
 require_once("./model/Mahasiswa.php");
 
 // buat object

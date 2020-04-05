@@ -1,22 +1,33 @@
 <?php
+
+// variable yang menyatakan update / insert (karna formnya sama)
 $isUpdating = isset($_GET['target']);
+
+// buat judul aja
 $title = $isUpdating ? "Update" : "Buat Baru";
 
+// tarik model
 require_once("./model/Mahasiswa.php");
 
 // jika proses update / insert masuk sini
 if(count($_POST)) {
+    // buat object
     $model_mhs = new Mahasiswa();
 
+    // jadi klo update dia ke editMahasoswa kalo enggak dia ke addMhs
     $hasil = $isUpdating 
         ? $model_mhs->editMahasiswa($_GET['target'], $_POST) 
         : $model_mhs->addMahasiswa($_POST);
 
+    // hasilnya nantik klo gk berhasil munjul error
     if(!$hasil) {
         exit($isUpdating ? "Maaf, tidak ada perubahan terjadi" : "Kesalahan pada pembuatan data");
     }
 
+    // kembali ke halaman utama
     header("Location: ./");
+
+    // keluar dan tidak melanjutkan skrip ke bawah
     exit();
 }
 
