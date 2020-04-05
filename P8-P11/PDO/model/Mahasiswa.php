@@ -4,6 +4,8 @@ require_once("config/database.php");
 class Mahasiswa extends Database {
     private String $table = "mahasiswa";
 
+    public Array $lastError = [];
+
     /**
      * Add new mahasisswa
      * 
@@ -38,9 +40,9 @@ class Mahasiswa extends Database {
          * array values mengembalikan nilai [0 => 1822250092, 1 => 'abdul aziz']
          * execute harus menggunakan array values
          */
-        $result->execute(array_values($newData));
-        
-        var_dump($result->errorInfo());
+        if(!$result->execute(array_values($newData))) {
+            $this->lastError = $result->errorInfo();
+        }
 
         /**
          * mengembalikan nilai balik dengan ID mahasiswa yg baru di masukan
@@ -68,7 +70,7 @@ class Mahasiswa extends Database {
 
         // jadikan datasetna menjadi array, misal : ["'npm' => '?'", "'nama' => '?'"]
         foreach($dataSet as $field => $value) {
-            $setQuery[] = "{$field} = '?'";
+            $setQuery[] = "`{$field}` = ?";
         }
 
 
@@ -86,7 +88,9 @@ class Mahasiswa extends Database {
          * array values mengembalikan nilai [0 => 1822250092, 1 => 'abdul aziz']
          * execute harus menggunakan array values
          */
-        $result = $result->execute(array_values($dataSet));
+        if(!$result->execute(array_values($dataSet))) {
+            $this->lastError = $result->errorInfo();
+        };
 
         /**
          * Balikin hasilnya true atau false (prosesnya berhasil / enggak)

@@ -13,7 +13,7 @@ if(count($_POST)) {
         : $model_mhs->addMahasiswa($_POST);
 
     if(!$hasil) {
-        exit("error");
+        exit($isUpdating ? "Maaf, tidak ada perubahan terjadi" : "Kesalahan pada pembuatan data");
     }
 
     header("Location: ./");
@@ -47,27 +47,72 @@ if($isUpdating) {
         <form target="" method="POST">
             <div class="form-col">
                 <div class="form-group">
-                    <label for="">Nama Lengkap</label>
-                    <input class="form-control" name="nama" type="text" id="nama" placeholder="Nama Lengkap">
+                    <label for="nama">Nama Lengkap</label>
+                    <input 
+                        class="form-control" 
+                        name="nama" 
+                        type="text" 
+                        value="<?php echo $isUpdating ? $current_data['nama'] : ""; ?>" 
+                        id="nama" 
+                        placeholder="Nama Lengkap"
+                    />
                 </div>
                 <div class="form-group">
-                    <label for="">NPM</label>
-                    <input class="form-control" name='npm' type="text" id="npm" placeholder="NPM">
+                    <label for="npm">NPM</label>
+                    <input 
+                        class="form-control" 
+                        name='npm' 
+                        type="text" 
+                        id="npm" 
+                        value="<?php echo $isUpdating ? $current_data['npm'] : ""; ?>" 
+                        placeholder="Nomor Pokok Mahasiswa"
+                    />
                 </div>
                 <div class="form-group d-flex align-items-center">
-                    <input class="gender mx-2" name='jk' type="radio" id="gender" value="L">Laki-laki
-                    <input class="gender mx-2" name='jk' type="radio" id="gender" value="P">Perempuan
+                    <input 
+                        class="gender mx-2" 
+                        name='jk' 
+                        type="radio" 
+                        id="gender" 
+                        value="L"
+                        <?php echo $isUpdating && $current_data['jk'] == "L" ? "checked" : ""; ?>
+                    >
+                    Laki-laki
+                    <input 
+                        class="gender mx-2" 
+                        name='jk' 
+                        type="radio" 
+                        id="gender" 
+                        value="P"
+                        <?php echo $isUpdating && $current_data['jk'] == "P" ? "checked" : ""; ?>
+                    >
+                    Perempuan
                 </div>
                 <div class="form-group">
-                    <label for="">tempat lahir</label>
-                    <input class="form-control" type="text" name='tempat_lahir' id="tempat_lahir" placeholder="tempat lahir">
+                    <label for="tempat_lahir">tempat lahir</label>
+                    <input 
+                        class="form-control" 
+                        value="<?php echo $isUpdating ? $current_data['tempat_lahir'] : ""; ?>" 
+                        type="text" 
+                        name='tempat_lahir' 
+                        id="tempat_lahir" 
+                        placeholder="tempat lahir"
+                    />
                 </div>
                 <div class="form-group">
-                    <label for="">tanggal lahir</label>
-                    <input class="form-control" type="date" name="tanggal_lahir" id="tanggal_lahir">
+
+                    <label for="tanggal_lahir">tanggal lahir</label>
+                    <input 
+                        class="form-control" 
+                        value="<?php echo $isUpdating ? $current_data['tanggal_lahir'] : ""; ?>" 
+                        type="date" 
+                        name="tanggal_lahir" 
+                        id="tanggal_lahir"
+                    />
+
                 </div>
                 <br>
-                <button class="btn btn-primary" id="submit" type="submit">Tambah Baru</button>
+                <button class="btn btn-primary" id="submit" type="submit"><?php echo $title ?></button>
                 <a href='./' class='btn btn-warning'>Batal<a>
             </div>
         </form>
