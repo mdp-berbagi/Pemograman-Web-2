@@ -134,7 +134,7 @@ class Mahasiswa extends Database {
      */
     function deleteMahasiswa(Int $id) {
         $database = Database::start();
-        $deleted = $database->exec("DELET FROM {$this->table} WHERE id = '{$id}'");
+        $deleted = $database->exec("DELETE FROM {$this->table} WHERE id = '{$id}'");
 
         return ($deleted > 0);
     }
