@@ -38,8 +38,9 @@ class Mahasiswa extends Database {
          * array values mengembalikan nilai [0 => 1822250092, 1 => 'abdul aziz']
          * execute harus menggunakan array values
          */
-        $result = $result->execute(array_values($newData));
+        $result->execute(array_values($newData));
         
+        var_dump($result->errorInfo());
 
         /**
          * mengembalikan nilai balik dengan ID mahasiswa yg baru di masukan
