@@ -8,13 +8,13 @@
  * include("./config/connection.php");
  * 
  */
-require_once("./model/Mahasiswa.php");
+require_once("../../model/Mahasiswa.php");
 
 // buat object
 $model_mhs = new Mahasiswa();
 
 // tarik data (BOLEH DI FOREACH, INI ARRAY BIASA)
-$semua_mahasiswa = $model_mhs->getAllMahasiswa();
+$semua_mahasiswa = $model_mhs->getAll();
 ?>
 
 <!DOCTYPE html>
@@ -25,21 +25,28 @@ $semua_mahasiswa = $model_mhs->getAllMahasiswa();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manajement Mahasiswa</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-
+    <link 
+        rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+        crossorigin="anonymous" 
+    />
 </head>
 
 <body>
     <div id='app'>
+        <?php
+            require_once "../_components/nav.php"
+        ?>
         <div class='container h1 pt-5 pb-1'>
-            <b class='text-primary'>|</b> Manajement Mahasiswa
+            <b class='text-primary display-4'>|</b> Manajement Mahasiswa
         </div>
         <div class='container py-3'>
             <div class='row'>
 
                 <!-- TABLE MAHASISWA -->
                 <div class='col-12'>
-                    <table id='mhs_table' style='width:100%' class='table table-sm'></table>
+                    <table id='mhs_table' class='table table-sm'></table>
                     <br />
                     <a href='./form.php' class='btn btn-primary'>Buat Baru<a>
                 </div>
@@ -89,7 +96,7 @@ $semua_mahasiswa = $model_mhs->getAllMahasiswa();
                         render: function(id) {
                             return "" + 
                                 "<a href='./form.php?target=" + id + "' class='btn btn-primary mx-1'>Edit<a>" + 
-                                "<a href='./delete.php?target=" + id + "' class='btn btn-warning mx-1'>Delete<a>"
+                                "<a href='./delete.php?target=" + id + "' class='btn btn-danger mx-1'>Delete<a>"
                             ;
                         }
                     }

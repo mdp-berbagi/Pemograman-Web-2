@@ -7,7 +7,7 @@ $isUpdating = isset($_GET['target']);
 $title = $isUpdating ? "Update" : "Buat Baru";
 
 // tarik model
-require_once("./model/Mahasiswa.php");
+require_once("../../model/Mahasiswa.php");
 
 // jika proses update / insert masuk sini
 if(count($_POST)) {
@@ -16,8 +16,8 @@ if(count($_POST)) {
 
     // jadi klo update dia ke editMahasoswa kalo enggak dia ke addMhs
     $hasil = $isUpdating 
-        ? $model_mhs->editMahasiswa($_GET['target'], $_POST) 
-        : $model_mhs->addMahasiswa($_POST);
+        ? $model_mhs->editRow($_GET['target'], $_POST) 
+        : $model_mhs->addOnce($_POST);
 
     // hasilnya nantik klo gk berhasil munjul error
     if(!$hasil) {
@@ -34,7 +34,7 @@ if(count($_POST)) {
 
 if($isUpdating) {
     $model_mhs = new Mahasiswa();
-    $current_data = $model_mhs->getMahasiswa($_GET['target']);
+    $current_data = $model_mhs->getRow($_GET['target']);
 }
 
 ?>
@@ -124,7 +124,7 @@ if($isUpdating) {
                 </div>
                 <br>
                 <button class="btn btn-primary" id="submit" type="submit"><?php echo $title ?></button>
-                <a href='./' class='btn btn-warning'>Batal<a>
+                <a href='./' class='btn btn-danger'>Batal<a>
             </div>
         </form>
     </div>

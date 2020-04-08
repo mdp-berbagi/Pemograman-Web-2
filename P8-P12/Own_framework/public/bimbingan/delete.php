@@ -5,13 +5,13 @@ if(!isset($_GET['target'])) {
 }
 
 // panggil model
-require_once("./model/Mahasiswa.php");
+require_once("../../model/Bimbingan.php");
 
 // buat object
-$model_mhs = new Mahasiswa();
+$model_bbgn = new Bimbingan();
 
 // mencoba delete
-$hasil_delete = $model_mhs->deleteMahasiswa($_GET['target']);
+$hasil_delete = $model_bbgn->deleteRow($_GET['target']);
 
 // check berhasil ato idak
 if(!$hasil_delete) {
@@ -19,4 +19,4 @@ if(!$hasil_delete) {
 }
 
 // untuk kembali ke halaman awal otomatis
-header("Location: ../");
+header("Location: ./");
