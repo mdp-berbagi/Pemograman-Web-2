@@ -1,5 +1,5 @@
 <?php
 
-header("Location: /public/mahasiswa/index.php");
+header("Location: mahasiswa/index.php");
 
 ?>
