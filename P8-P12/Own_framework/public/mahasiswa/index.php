@@ -1,5 +1,7 @@
 <?php
 
+require_once("../../config/version.php");
+
 /**
  * Contoh Manggil Koneksi Lainya : 
  * 
