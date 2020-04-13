@@ -1,6 +1,6 @@
 <?php
-require_once(__DIR__."/BaseDatabase.php");
+require_once(__DIR__."/Model.php");
 
-class Mahasiswa extends BaseDatabase {
+class Mahasiswa extends Model {
     public String $table = "mahasiswa";
 }

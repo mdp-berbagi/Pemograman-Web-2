@@ -1,7 +1,7 @@
 <?php
-require_once(__DIR__."/BaseDatabase.php");
+require_once(__DIR__."/Model.php");
 
-class Bimbingan extends BaseDatabase {
+class Bimbingan extends Model {
     public String $table = "bimbingan";
 
     public Array $join = [
