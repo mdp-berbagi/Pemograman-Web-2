@@ -66,7 +66,8 @@ $semua_mahasiswa = $model_mhs->getAll();
             $('#mhs_table').DataTable({
                 // Kebutuhan
                 data: <?php echo isset($semua_mahasiswa) ? json_encode($semua_mahasiswa) : 'null' ?>,
-                columns: [{
+                columns: [
+                    {
                         data: 'id',
                         title: "ID"
                     },
@@ -79,6 +80,7 @@ $semua_mahasiswa = $model_mhs->getAll();
                         title: "Nama"
                     },
                     {
+                        title: "Jenis Kelamin",
                         data: 'jk',
                         render: function(data) {
                             return data == "L" ? "Pria" : "Wanita";

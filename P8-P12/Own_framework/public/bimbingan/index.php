@@ -1,4 +1,5 @@
 <?php
+require_once("../../config/version.php");
 
 /**
  * Contoh Manggil Koneksi Lainya : 
@@ -65,7 +66,8 @@ $model_bbng = $model_bbng->joinWith('mahasiswa', ['nama' => 'nama_mahasiswa'])->
             $('#datatable').DataTable({
                 // Kebutuhan
                 data: <?php echo isset($model_bbng) ? json_encode($model_bbng) : 'null' ?>,
-                columns: [{
+                columns: [
+                    {
                         data: 'id',
                         title: "ID"
                     },
@@ -76,6 +78,10 @@ $model_bbng = $model_bbng->joinWith('mahasiswa', ['nama' => 'nama_mahasiswa'])->
                     {
                         data: 'dosen',
                         title: "Nama Dosen"
+                    },
+                    {
+                        data: 'materi',
+                        title: "Materi"
                     },
                     {
                         data: 'waktu',

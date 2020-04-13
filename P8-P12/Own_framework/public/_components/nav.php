@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
   <div class='container'>
-    <a class="navbar-brand text-white">App Crut</a>
+    <a class="navbar-brand text-white">App Crut V2</a>
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link btn-primary btn text-white" href="/public/mahasiswa/">Mahasiswa</a>

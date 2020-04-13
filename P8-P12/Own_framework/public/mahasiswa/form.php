@@ -1,4 +1,5 @@
 <?php
+require_once("../../config/version.php");
 
 // variable yang menyatakan update / insert (karna formnya sama)
 $isUpdating = isset($_GET['target']);
@@ -84,20 +85,20 @@ if($isUpdating) {
                         class="gender mx-2" 
                         name='jk' 
                         type="radio" 
-                        id="gender" 
+                        id="gender_l" 
                         value="L"
                         <?php echo $isUpdating && $current_data['jk'] == "L" ? "checked" : ""; ?>
                     >
-                    Laki-laki
+                    <label for='gender_l'>Laki-laki</label>
                     <input 
                         class="gender mx-2" 
                         name='jk' 
                         type="radio" 
-                        id="gender" 
+                        id="gender_p" 
                         value="P"
-                        <?php echo $isUpdating && $current_data['jk'] == "P" ? "checked" : ""; ?>
+                        <?php echo $isUpdating && $current_data['jk'] == "W" ? "checked" : ""; ?>
                     >
-                    Perempuan
+                    <label for='gender_p'>Perempuan</label>
                 </div>
                 <div class="form-group">
                     <label for="tempat_lahir">tempat lahir</label>

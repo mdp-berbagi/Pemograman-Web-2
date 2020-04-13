@@ -1,4 +1,6 @@
 <?php
+require_once("../../config/version.php");
+
 // liat apakah ada target yang harus di delete
 if(!isset($_GET['target'])) {
     exit("Tidak bisa hapus data karna tidak ada target");
