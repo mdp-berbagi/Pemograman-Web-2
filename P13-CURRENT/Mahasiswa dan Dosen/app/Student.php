@@ -9,6 +9,16 @@ class Student extends Model
 {
     /**
      * Mendapatkan NPM
+     *
+     * Ini tidak optimal, harusnya NPM di simpan di
+     * database dan buat mutation
+     *
+     * Mutation yang dibuat harusnya :
+     * mayor_id, start_study dan id_reg
+     *
+     * biar update npm klo antar 3 itu berubah
+     *
+     * @return string
      */
     function getNpmAttribute(): string
     {
@@ -20,11 +30,26 @@ class Student extends Model
         return "{$start}{$finish}{$mayor}{$id_reg}";
     }
 
+    /**
+     * Dapetin gender
+     *
+     * @param int $gender_code
+     *
+     * @return string
+     */
     function getGenderAttribute(int $gender_code): string
     {
         return $gender_code == 1 ? "Wanita" : "Pria";
     }
 
+    /**
+     * membuat gender
+     * gendernya bisa 0 / 1 / wanita / pria
+     *
+     * @param string $new_gender
+     *
+     * @return void
+     */
     function setGenderAttribute(string $new_gender)
     {
         $result = [
