@@ -1,5 +1,9 @@
-@php ($color = $color ?? 'indigo')
+@php
+    $have_method = isset($method);
 
+    $color = $color ?? 'indigo';
+    $tag = isset($href) ? 'a' : 'button'
+@endphp
 <div
     class="
         p-2
@@ -12,8 +16,10 @@
         sm:inline-flex
     "
 >
-    <a
-        href='{{ isset($method) ? '#' : $href }}'
+    <!-- link -->
+    <{{ $tag }}
+        href='{{ $href ?? '' }}'
+
         class="
             font-semibold
             ml-1
@@ -22,18 +28,18 @@
             flex-auto
             hover:shadow-2xl
         "
-        @if(isset($method))
-            onclick="this.getElementsByTagName('form')[0].submit()"
+        @if($have_method)
+            onclick="this.getElementsByTagName('form')[0].submit(); return false;"
         @endif
     >
-        @if(isset($method))
-        <form target="{{ $href }}" method="POST">
-            @csrf
-            @method($method)
-        </form>
+        @if($have_method)
+            <form target="{{ $href ?? '' }}" method="POST" formtarget="_self">
+                @csrf
+                @method($method)
+            </form>
         @endif
         {{ $name }}
-    </a>
+    </{{ $tag }}>
 
     <!-- icon -->
     <svg
@@ -44,6 +50,4 @@
                 d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"
             />
     </svg>
-
-
 </div>

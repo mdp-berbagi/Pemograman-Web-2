@@ -7,6 +7,8 @@ use Illuminate\Support\Carbon;
 
 class Student extends Model
 {
+    protected $fillable = ["name", "birthday", "gender", "start_study", "major_id", "register_id"];
+
     /**
      * Mendapatkan NPM
      *

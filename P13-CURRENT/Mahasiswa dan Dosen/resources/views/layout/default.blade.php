@@ -11,7 +11,6 @@
 </head>
 
 <body>
-    <div>
         @component('components.nav')
             @slot('title', config('app.name'))
             @slot('menus', [
@@ -21,12 +20,14 @@
         @endcomponent
 
         <main class='flex'>
+            <!--
             <div class='w-1/5 bg-indigo-800 p-2 text-white'>
                 @component('components.sidebar')
                 @endcomponent
             </div>
+            -->
 
-            <div class='w-4/5 '>
+            <div class='w-full'>
                 @yield('content')
             </div>
         </main>

@@ -18,7 +18,7 @@ class StudentController extends Controller
     {
         $student_data = Student::all();
 
-        return view("pages.mahasiswa.view", [
+        return view("pages.mahasiswa.index", [
             'student_data' => $student_data
         ]);
     }
@@ -41,7 +41,23 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->validate([
+            "name" => "string",
+            "gender" => "in:0,1",
+            "birthday" => "date",
+            "start_study" => "date",
+            "major_id" => "exists:majors,number_code",
+            "register_id" => "numeric"
+        ]);
+
+        $result = Student::create($input);
+
+        return redirect()
+            ->route('student.index')
+            ->with('msg', [
+                'title' => 'Mahasiswa Berhasil Dibuat !',
+                'desc'  => "Sukses menambahkan {$result->name} dengan npm {$result->npm}"
+            ]);
     }
 
     /**
@@ -52,7 +68,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        return 1;
+        return view("pages.mahasiswa.form");
     }
 
     /**
@@ -63,7 +79,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        view("pages.mahasiswa.form", [
+        return view("pages.mahasiswa.form", [
             'student' => $student
         ]);
     }
@@ -77,7 +93,12 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        return redirect()
+            ->route('student.index')
+            ->with('msg', [
+                'title' => "Mahasiswa berhasil di pebaharui",
+                'desc'  => "Mahasiswa bernama {$student->name} NPM {$student->npm} telah di perbaharui..."
+            ]);
     }
 
     /**
@@ -88,6 +109,11 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        return redirect()
+            ->route('student.index')
+            ->with('msg', [
+                'title' => "Mahasiswa berhasil di hapus",
+                'desc'  => "Mahasiswa bernama {$student->name} NPM {$student->npm} telah di hapus..."
+            ]);
     }
 }
